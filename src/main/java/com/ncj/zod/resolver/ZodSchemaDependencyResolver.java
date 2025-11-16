@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ZodSchemaDependencyResolver {
-  private final Map<String, String> schemaMap; // 스키마명 -> zod 문자열
+  private final Map<String, String> schemaMap;
   private final Pattern refPattern = Pattern.compile("\\b(\\w+Schema)\\b");
   private final String zodFormat = "export const %s = %s\n";
   private final String zodInferFormat = "export type %s = z.infer<typeof %s>;\n";
@@ -29,8 +29,8 @@ public class ZodSchemaDependencyResolver {
     Matcher matcher = pattern.matcher(fullZod);
 
     while (matcher.find()) {
-      String name = matcher.group(1); // e.g., AccountSchema
-      String code = matcher.group(2); // z.object({...});
+      String name = matcher.group(1);
+      String code = matcher.group(2);
       result.put(name, code.trim());
     }
     return result;
@@ -73,7 +73,7 @@ public class ZodSchemaDependencyResolver {
       }
     }
 
-    ordered.put(current, code); // 참조 먼저 넣고 마지막에 본인 넣기
+    ordered.put(current, code);
   }
 
   /**

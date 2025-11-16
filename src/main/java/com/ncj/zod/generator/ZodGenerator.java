@@ -36,8 +36,6 @@ public class ZodGenerator {
 
   public String generateZodSchemas() {
     Map<String, Schema> schemas = openApi3.getComponents().getSchemas();
-
-    // 먼저 모든 스키마를 캐시에 넣어둔다
     schemas.forEach(handlerManager::convert);
 
     StringBuilder sb = new StringBuilder("import { z } from 'zod';\n\n");
@@ -60,7 +58,7 @@ public class ZodGenerator {
 
     });
 
-    return sb.toString().trim(); // 마지막 공백 제거
+    return sb.toString().trim();
   }
 
   public List<String> getRefNames() {

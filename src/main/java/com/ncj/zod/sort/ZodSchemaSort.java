@@ -12,7 +12,6 @@ import java.util.Set;
 public class ZodSchemaSort {
 
   public static Map<String, String> sort(Map<String, String> convertedCache) {
-    // 1. 의존성 맵 구성
     Map<String, Set<String>> dependencyMap = new HashMap<>();
 
     for (Map.Entry<String, String> entry : convertedCache.entrySet()) {
@@ -35,10 +34,8 @@ public class ZodSchemaSort {
       dependencyMap.put(key, dependencies);
     }
 
-    // 2. 위상 정렬
     List<String> sortedKeys = SchemaDependencySorter.sortByDependency(dependencyMap);
 
-    // 3. 정렬된 순서로 LinkedHashMap 구성
     LinkedHashMap<String, String> sorted = new LinkedHashMap<>();
     for (String key : sortedKeys) {
       sorted.put(key, convertedCache.get(key));
