@@ -1,42 +1,42 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.4.4'
-    id 'io.spring.dependency-management' version '1.1.7'
+  id 'java'
+  id 'org.springframework.boot' version '3.4.4'
+  id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'swaggerToZod'
 version = '0.0.3'
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
 }
 
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 jar {
-    enabled = true
-    archiveFileName = "${rootProject.name}-${version}.jar"
+  enabled = true
+  archiveFileName = "${rootProject.name}-${version}.jar"
 }
 
 dependencies {
-    implementation 'org.openapi4j:openapi-parser:0.6'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  implementation 'org.openapi4j:openapi-parser:0.6'
+  implementation 'org.springframework.boot:spring-boot-starter'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
