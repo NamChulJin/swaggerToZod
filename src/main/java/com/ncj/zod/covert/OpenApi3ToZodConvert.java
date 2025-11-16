@@ -16,7 +16,7 @@ public class OpenApi3ToZodConvert {
   private final ZodTypeHandlerManager typeHandlerManager;
   private final ZodSchemaCacheManager schemaCacheManager;
   private final URL docUrl;
-  private OpenApi3 openApi3;
+  private final OpenApi3 openApi3;
 
   public OpenApi3ToZodConvert(String docUrl) {
     if (docUrl == null || docUrl.isBlank()) {
