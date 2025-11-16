@@ -12,21 +12,32 @@ import org.openapi4j.parser.model.v3.OpenApi3;
 
 @Getter
 public class OpenApi3ToZodConvert {
-  private final String docUrl;
+
   private final ZodTypeHandlerManager typeHandlerManager;
   private final ZodSchemaCacheManager schemaCacheManager;
+  private final URL docUrl;
   private OpenApi3 openApi3;
 
-  public OpenApi3ToZodConvert(String docUrl) throws ResolutionException, MalformedURLException, ValidationException {
-    this.docUrl = docUrl;
-    this.openApi3 = read();
+  public OpenApi3ToZodConvert(String docUrl) {
+    if (docUrl == null || docUrl.isBlank()) {
+      throw new IllegalArgumentException("docUrl must not be null or empty");
+    }
+
+    try {
+      this.docUrl = new URL(docUrl);
+      this.openApi3 = read();
+    } catch (MalformedURLException e) {
+      throw new IllegalArgumentException("Invalid docUrl: " + docUrl, e);
+    } catch (ResolutionException | ValidationException e) {
+      throw new IllegalStateException("Failed to load OpenAPI document from: " + docUrl, e);
+    }
+
     this.schemaCacheManager = new ZodSchemaCacheManager();
-    this.typeHandlerManager = new ZodTypeHandlerManager(openApi3, schemaCacheManager); // 캐시 넘김
+    this.typeHandlerManager = new ZodTypeHandlerManager(openApi3, schemaCacheManager);
   }
 
-
-  private OpenApi3 read() throws MalformedURLException, ResolutionException, ValidationException {
+  private OpenApi3 read() throws ResolutionException, ValidationException {
     OpenApi3Parser openApi3Parser = new OpenApi3Parser();
-    return openApi3Parser.parse(new URL(docUrl), false);
+    return openApi3Parser.parse(docUrl, false);
   }
 }
