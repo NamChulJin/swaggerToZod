@@ -114,17 +114,3 @@ export type UserType = z.infer<typeof userSchema>;
 
 ---
 
-## 기여 방법
-
-1. 이 저장소를 포크(fork)합니다.
-2. 기능/수정을 위한 브랜치를 생성합니다.  
-   `git checkout -b feature/my-feature`
-3. 코드 수정 후 테스트를 실행합니다.  
-   `./gradlew test`
-4. 변경 내용을 커밋하고 원격 저장소에 푸시합니다.  
-   `git push origin feature/my-feature`
-5. Pull Request를 생성하고 변경 내용을 설명합니다.
-
-버그 제보, 개선 제안은 GitHub Issues에 남겨 주세요.
-
----
