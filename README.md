@@ -113,6 +113,9 @@ export type UserType = z.infer<typeof userSchema>;
 `SpringSwagerToZodApplicationTests`를 통해 Spring Boot 컨텍스트 로딩 여부를 확인합니다.
 
 ---
+## 활용 
 
+swaggerToZod를 Spring boot의 적용해 Swager 문서의 Zod Schema 표현했습니다.
+
+<img width="1008" height="778" alt="image" src="https://github.com/user-attachments/assets/9f4773cf-7c57-4c4a-bb35-e5e6e6a2ecfc" />
 <img width="1433" height="1054" alt="image" src="https://github.com/user-attachments/assets/f0a95356-0f41-4898-859a-0f501d777d1e" />
-
